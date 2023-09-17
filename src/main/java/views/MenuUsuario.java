@@ -102,7 +102,7 @@ public class MenuUsuario extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				ReservasView reservas = new ReservasView();
 				reservas.setVisible(true);
-				dispose();
+				//dispose();
 			}
 		});
 		btnRegistro.setBounds(0, 255, 257, 56);
@@ -133,7 +133,7 @@ public class MenuUsuario extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Busqueda busqueda = new Busqueda();
 				busqueda.setVisible(true);
-				dispose();
+				//dispose();
 			}
 		});
 		btnBuscar.setBounds(0, 312, 257, 56);

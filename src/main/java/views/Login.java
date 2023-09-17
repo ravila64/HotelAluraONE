@@ -109,6 +109,7 @@ public class Login extends JFrame {
 		labelExit.setHorizontalAlignment(SwingConstants.CENTER);		
 		
 		txtUsuario = new JTextField();
+		txtUsuario.setToolTipText("Ingrese Usuario");
 		txtUsuario.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -123,7 +124,6 @@ public class Login extends JFrame {
 			}
 		});
 		txtUsuario.setFont(new Font("Roboto", Font.PLAIN, 16));
-		txtUsuario.setText("Ingrese su nombre de usuario");
 		txtUsuario.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		txtUsuario.setForeground(SystemColor.activeCaptionBorder);
 		txtUsuario.setBounds(65, 256, 324, 32);
@@ -147,6 +147,7 @@ public class Login extends JFrame {
 		panel.add(separator_1);
 		
 		txtContrasena = new JPasswordField();
+		txtContrasena.setToolTipText("Ingrese contrasenha");
 		txtContrasena.setText("********");
 		txtContrasena.addMouseListener(new MouseAdapter() {
 			@Override
@@ -243,7 +244,7 @@ public class Login extends JFrame {
 	        if(txtUsuario.getText().equals(Usuario) && contrase.equals(Contraseña)){
 	            MenuUsuario menu = new MenuUsuario();
 	            menu.setVisible(true);
-	            dispose();	 
+	            //dispose();	 
 	        }else {
 	            JOptionPane.showMessageDialog(this, "Usuario o Contraseña no válidos");
 	        }
