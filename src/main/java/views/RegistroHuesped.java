@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import javax.swing.JTextField;
 import java.awt.Color;
+
 import com.toedter.calendar.JDateChooser;
 import jdbc.controller.HuespedesController;
 import jdbc.controller.ReservasController;
@@ -43,6 +44,8 @@ public class RegistroHuesped extends JFrame {
 	private JLabel labelAtras;
 	int xMouse, yMouse;
 	int id;
+	//JDateChooser jdc = new JDateChooser();
+	
 
 	/**
 	 * Launch the application.
