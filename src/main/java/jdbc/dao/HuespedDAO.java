@@ -8,18 +8,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import jdbc.modelo.Huespedes;
-import jdbc.modelo.Reserva;
+import jdbc.modelo.Huesped;
 
 
-public class HuespedesDAO {
+public class HuespedDAO {
     private Connection connection;
 
-    public HuespedesDAO(Connection connection) {
+    public HuespedDAO(Connection connection) {
         this.connection = connection;
     }
 
-    public void guardar(Huespedes huesped) {
+    public void guardar(Huesped huesped) {
         try {
             String sql = "INSERT INTO huespedes (nombre, apellido, fecha_nacimiento, nacionalidad, telefono, idReserva) VALUES (?, ?, ?, ?,?,?)";
 
@@ -44,8 +43,8 @@ public class HuespedesDAO {
             throw new RuntimeException(e);
         }
     }
-    public List<Huespedes> listarHuespedes() {
-        List<Huespedes> huespedes = new ArrayList<Huespedes>();
+    public List<Huesped> listarHuespedes() {
+        List<Huesped> huespedes = new ArrayList<Huesped>();
         try {
             String sql = "SELECT id, nombre, apellido, fecha_nacimiento, nacionalidad, telefono, idReserva FROM huespedes";
 
@@ -60,8 +59,8 @@ public class HuespedesDAO {
         }
     }
 
-    public List<Huespedes> buscarId(String id) {
-        List<Huespedes> huespedes = new ArrayList<Huespedes>();
+    public List<Huesped> buscarId(String id) {
+        List<Huesped> huespedes = new ArrayList<Huesped>();
         try {
 
             String sql = "SELECT id, nombre, apellido, fecha_nacimiento, nacionalidad, telefono, idReserva FROM huespedes WHERE idReserva = ?";
@@ -102,11 +101,11 @@ public class HuespedesDAO {
         }
     }
 
-    private void transformarResultSetEnHuesped(List<Huespedes> reservas, PreparedStatement pstm) throws SQLException {
+    private void transformarResultSetEnHuesped(List<Huesped> reservas, PreparedStatement pstm) throws SQLException {
         try (ResultSet rst = pstm.getResultSet()) {
             while (rst.next()) {
-                Huespedes huespedes = new Huespedes(rst.getInt(1), rst.getString(2), rst.getString(3), rst.getDate(4), rst.getString(5), rst.getString(6), rst.getInt(7));
-                reservas.add(huespedes);
+                Huesped huesped = new Huesped(rst.getInt(1), rst.getString(2), rst.getString(3), rst.getDate(4), rst.getString(5), rst.getString(6), rst.getInt(7));
+                reservas.add(huesped);
             }
         }
     }

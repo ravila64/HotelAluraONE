@@ -3,27 +3,27 @@ package jdbc.controller;
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.List;
-import jdbc.dao.HuespedesDAO;
+import jdbc.dao.HuespedDAO;
 import jdbc.factory.ConnectionFactory;
-import jdbc.modelo.Huespedes;
+import jdbc.modelo.Huesped;
 
 
 public class HuespedesController {
-    private HuespedesDAO huespedDAO;
+    private HuespedDAO huespedDAO;
 
     public HuespedesController() {
         Connection connection = new ConnectionFactory().recuperarConexion();
-        this.huespedDAO = new HuespedesDAO(connection);
+        this.huespedDAO = new HuespedDAO(connection);
     }
 
-    public void guardar(Huespedes huespedes) {
-        this.huespedDAO.guardar(huespedes);
+    public void guardar(Huesped huesped) {
+        this.huespedDAO.guardar(huesped);
     }
-    public List<Huespedes> listarHuespedes() {
+    public List<Huesped> listarHuespedes() {
         return this.huespedDAO.listarHuespedes();
     }
 
-    public List<Huespedes> listarHuespedesId(String id) {
+    public List<Huesped> listarHuespedesId(String id) {
         return this.huespedDAO.buscarId(id);
     }
 

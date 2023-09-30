@@ -1,7 +1,7 @@
 package jdbc.modelo;
 import java.sql.Date;
 
-public class Huespedes {
+public class Huesped {
     private Integer Id;
     private String Nombre;
     private String Apellido;
@@ -10,8 +10,8 @@ public class Huespedes {
     private String Telefono;
     private Integer IdReserva;
 
-    public Huespedes(String nombre, String apellido,  Date fechaNacimiento, String nacionalidad, String telefono,
-                     Integer idReserva) {
+    public Huesped(String nombre, String apellido, Date fechaNacimiento, String nacionalidad, String telefono,
+                   Integer idReserva) {
         super();
         Nombre = nombre;
         Apellido = apellido;
@@ -21,8 +21,8 @@ public class Huespedes {
         IdReserva = idReserva;
     }
 
-    public Huespedes(Integer id, String nombre, String apellido, Date fechaNacimiento, String nacionalidad,
-                     String telefono, Integer idReserva) {
+    public Huesped(Integer id, String nombre, String apellido, Date fechaNacimiento, String nacionalidad,
+                   String telefono, Integer idReserva) {
         super();
         Id = id;
         Nombre = nombre;

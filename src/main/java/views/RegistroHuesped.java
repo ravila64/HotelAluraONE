@@ -11,7 +11,7 @@ import java.awt.Color;
 import com.toedter.calendar.JDateChooser;
 import jdbc.controller.HuespedesController;
 import jdbc.controller.ReservasController;
-import jdbc.modelo.Huespedes;
+import jdbc.modelo.Huesped;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -324,8 +324,8 @@ public class RegistroHuesped extends JFrame {
 			if (txtFechaN.getDate() != null && !txtNombre.equals("") && !txtApellido.equals("") && !txtTelefono.equals("")) {		
 				String fechaN = ((JTextField)txtFechaN.getDateEditor().getUiComponent()).getText();	
 				int nreserva = Integer.parseInt(txtNreserva.getText());
-				Huespedes huespedes = new Huespedes(txtNombre.getText(), txtApellido.getText(),  java.sql.Date.valueOf(fechaN), txtNacionalidad.getSelectedItem().toString(),txtTelefono.getText(), nreserva);
-				this.huespedesController.guardar(huespedes);
+				Huesped huesped = new Huesped(txtNombre.getText(), txtApellido.getText(),  java.sql.Date.valueOf(fechaN), txtNacionalidad.getSelectedItem().toString(),txtTelefono.getText(), nreserva);
+				this.huespedesController.guardar(huesped);
 				Exito exito = new Exito();
 				exito.setVisible(true);	
 				dispose();

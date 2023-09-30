@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 import jdbc.controller.HuespedesController;
 import jdbc.controller.ReservasController;
-import jdbc.modelo.Huespedes;
+import jdbc.modelo.Huesped;
 import jdbc.modelo.Reserva;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -351,11 +351,11 @@ public class Busqueda extends JFrame {
 	private List<Reserva> BuscarReservasId() {
 		return this.reservaController.buscarId(txtBuscar.getText());
 	} 
-	private List<Huespedes> BuscarHuespedes() {
+	private List<Huesped> BuscarHuespedes() {
 		return this.huespedesController.listarHuespedes();
 	}
 	
-	private List<Huespedes> BuscarHuespedesId() {
+	private List<Huesped> BuscarHuespedesId() {
 		return this.huespedesController.listarHuespedesId(txtBuscar.getText());
 	}
 	
@@ -391,9 +391,9 @@ public class Busqueda extends JFrame {
 
 	private void LlenarTablaHuespedes() {			       
 	    //Llenar Tabla
-		List<Huespedes> huesped = BuscarHuespedes();
+		List<Huesped> huesped = BuscarHuespedes();
 		try {
-			for (Huespedes huespedes : huesped) {
+			for (Huesped huespedes : huesped) {
 				modeloHuesped.addRow(new Object[] { huespedes.getId(), huespedes.getNombre(), huespedes.getApellido(), huespedes.getFechaNacimiento(), huespedes.getNacionalidad(), huespedes.getTelefono(), huespedes.getIdReserva() });
 			}
 		} catch (Exception e) {
@@ -403,9 +403,9 @@ public class Busqueda extends JFrame {
 	
 	private void LlenarTablaHuespedesId() {			       
 	    //Llenar Tabla
-		List<Huespedes> huesped = BuscarHuespedesId();
+		List<Huesped> huesped = BuscarHuespedesId();
 		try {
-			for (Huespedes huespedes : huesped) {
+			for (Huesped huespedes : huesped) {
 				modeloHuesped.addRow(new Object[] { huespedes.getId(), huespedes.getNombre(), huespedes.getApellido(), huespedes.getFechaNacimiento(), huespedes.getNacionalidad(), huespedes.getTelefono(), huespedes.getIdReserva() });
 			}
 		} catch (Exception e) {
