@@ -10,8 +10,8 @@ import javax.swing.JTextField;
 import java.awt.Color;
 
 import com.toedter.calendar.JDateChooser;
-import jdbc.controller.HuespedesController;
-import jdbc.controller.ReservasController;
+import jdbc.controller1.HuespedesController;
+import jdbc.controller1.ReservasController;
 import jdbc.modelo.Huesped;
 
 import javax.swing.JComboBox;

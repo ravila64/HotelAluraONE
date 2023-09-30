@@ -8,8 +8,8 @@ import javax.swing.border.EmptyBorder;
 
 import javax.swing.table.DefaultTableModel;
 
-import jdbc.controller.HuespedesController;
-import jdbc.controller.ReservasController;
+import jdbc.controller1.HuespedesController;
+import jdbc.controller1.ReservasController;
 import jdbc.modelo.Huesped;
 import jdbc.modelo.Reserva;
 import javax.swing.JTable;

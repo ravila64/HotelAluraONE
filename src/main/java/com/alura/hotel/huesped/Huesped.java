@@ -19,6 +19,7 @@ public class Huesped {
     private String nombre;
     private String apellido;
     private Date fechaNacimiento;
+    private boolean activo;
     @Enumerated(EnumType.STRING)
     private Nacionalidad nacionalidad;
     private String telefono;
@@ -33,5 +34,19 @@ public class Huesped {
         this.telefono= datosRegistroHuesped.telefono();
         this.idReserva = datosRegistroHuesped.idReserva();
     }
+
+    public void actualizarDatos(DatosActualizarHuesped datosActualizarHuesped){
+        if(datosActualizarHuesped.nombre()!=null){
+            this.nombre = datosActualizarHuesped.nombre();
+        }
+        if(datosActualizarHuesped.apellido()!=null){
+            this.apellido = datosActualizarHuesped.apellido();
+        }
+        if(datosActualizarHuesped.telefono()!=null){
+            this.telefono = datosActualizarHuesped.telefono();
+        }
+    }
+
+    public void desactivarHuesped(){ this.activo = false; }
 
 }
