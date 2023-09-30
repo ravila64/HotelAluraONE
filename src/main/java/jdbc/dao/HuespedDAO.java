@@ -18,31 +18,31 @@ public class HuespedDAO {
         this.connection = connection;
     }
 
-//    public void guardar(Huesped huesped) {
-//        try {
-//            String sql = "INSERT INTO huespedes (nombre, apellido, fecha_nacimiento, nacionalidad, telefono, idReserva) VALUES (?, ?, ?, ?,?,?)";
-//
-//            try (PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-//
-//                pstm.setString(1, huesped.getNombre());
-//                pstm.setString(2, huesped.getApellido());
-//                pstm.setDate(3, huesped.getFechaNacimiento());
-//                pstm.setString(4, huesped.getNacionalidad());
-//                pstm.setString(5, huesped.getTelefono());
-//                pstm.setInt(6, huesped.getIdReserva());
-//
-//                pstm.execute();
-//
-//                try (ResultSet rst = pstm.getGeneratedKeys()) {
-//                    while (rst.next()) {
-//                        huesped.setId(rst.getInt(1));
-//                    }
-//                }
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+    public void guardar(Huesped huesped) {
+        try {
+            String sql = "INSERT INTO huespedes (nombre, apellido, fecha_nacimiento, nacionalidad, telefono, idReserva) VALUES (?, ?, ?, ?,?,?)";
+
+            try (PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+                pstm.setString(1, huesped.getNombre());
+                pstm.setString(2, huesped.getApellido());
+                pstm.setDate(3, huesped.getFechaNacimiento());
+                pstm.setString(4, huesped.getNacionalidad());
+                pstm.setString(5, huesped.getTelefono());
+                pstm.setInt(6, huesped.getIdReserva());
+
+                pstm.execute();
+
+                try (ResultSet rst = pstm.getGeneratedKeys()) {
+                    while (rst.next()) {
+                        huesped.setId(rst.getInt(1));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public List<Huesped> listarHuespedes() {
         List<Huesped> huespedes = new ArrayList<Huesped>();
         try {
