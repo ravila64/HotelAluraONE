@@ -31,7 +31,7 @@ public class HuespedesController {
         this.huespedDAO.Actualizar(nombre, apellido, fechaN, nacionalidad, telefono, idReserva, id);
     }
 
-    public void Eliminar(Integer id) {
+    public void eliminar(Integer id) {
         this.huespedDAO.Eliminar(id);
     }
 }

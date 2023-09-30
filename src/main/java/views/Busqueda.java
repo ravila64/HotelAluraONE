@@ -304,7 +304,7 @@ public class Busqueda extends JFrame {
 					if(confirmar == JOptionPane.YES_OPTION){
 
 						String valor = tbReservas.getValueAt(filaReservas, 0).toString();			
-						reservaController.Eliminar(Integer.valueOf(valor));
+						reservaController.eliminar(Integer.valueOf(valor));
 						JOptionPane.showMessageDialog(contentPane, "Registro Eliminado");
 						limpiarTabla();
 						LlenarTablaReservas();
@@ -320,7 +320,7 @@ public class Busqueda extends JFrame {
 					if(confirmarh == JOptionPane.YES_OPTION){
 
 						String valor = tbHuespedes.getValueAt(filaHuespedes, 0).toString();			
-						huespedesController.Eliminar(Integer.valueOf(valor));
+						huespedesController.eliminar(Integer.valueOf(valor));
 						JOptionPane.showMessageDialog(contentPane, "Registro Eliminado");
 						limpiarTabla();
 						LlenarTablaHuespedes();

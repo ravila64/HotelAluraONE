@@ -31,7 +31,7 @@ public class ReservasController {
         this.reservaDAO.Actualizar(fechaE, fechaS, valor, formaPago, id);
     }
 
-    public void Eliminar(Integer id) {
+    public void eliminar(Integer id) {
         this.reservaDAO.Eliminar(id);
     }
 }
