@@ -13,11 +13,9 @@ import javax.swing.JTextField;
 
 import com.alura.hotel.controller.ReservaController;
 import com.alura.hotel.reserva.DatosRegistroReserva;
-import com.alura.hotel.reserva.FormaPago;
 import com.alura.hotel.reserva.Reserva;
 import com.toedter.calendar.JDateChooser;
-import jdbc.controller1.ReservasController;
-//import jdbc.modelo.Reserva;
+
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -46,8 +44,10 @@ public class ReservasView extends JFrame {
 	private JLabel labelExit;
 	private JLabel labelAtras;
 
-	private ReservasController reservasController;
+	//private ReservasController reservasController;
 	private ReservaController reservaController;   // new para spring
+//	@Autowired
+//	private ReservaRepository reservaRepository;
 
 	/**
 	 * Launch the application.
@@ -70,7 +70,9 @@ public class ReservasView extends JFrame {
 	 */
 	public ReservasView() {
 		//Instanciando la clase ReservasController
-		this.reservasController = new ReservasController();
+		//this.reservasController = new ReservasController();
+
+		this.reservaController = new ReservaController();  // spring
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ReservasView.class.getResource("/imagenes/aH-40px.png")));//Adiciona el ícono a nuestro programa
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -274,11 +276,11 @@ public class ReservasView extends JFrame {
 		txtValor.setHorizontalAlignment(SwingConstants.CENTER);
 		txtValor.setForeground(Color.BLACK);
 		txtValor.setBounds(78, 328, 43, 33);
-		txtValor.setEditable(false);
+		txtValor.setEditable(true);
 		txtValor.setFont(new Font("Roboto Black", Font.BOLD, 17));
 		txtValor.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		panel.add(txtValor);
-		txtValor.setColumns(10);
+		txtValor.setColumns(20);
 
 		txtFormaPago = new JComboBox<String>();
 		txtFormaPago.setBounds(68, 417, 289, 38);
@@ -314,10 +316,32 @@ public class ReservasView extends JFrame {
 		String formaP = (String) txtFormaPago.getSelectedItem();
 		Date fecha1= java.sql.Date.valueOf(fechaE);
 		Date fecha2= java.sql.Date.valueOf(fechaS);
-		DatosRegistroReserva datosRegistroReserva = new DatosRegistroReserva(fecha1, fecha2,Float.valueOf(txtValor.getText()),formaP);
-//		reservasController.guardar(nuevaReserva);
+//		Reserva nuevaReserva = new Reserva(java.sql.Date.valueOf(fechaE), java.sql.Date.valueOf(fechaS),txtValor.getText(),txtFormaPago.getSelectedItem().toString());
 
-		//llamado al jpa
+		DatosRegistroReserva nuevaReserva = new DatosRegistroReserva(fecha1, fecha2, Float.valueOf(txtValor.getText()),formaP);
+		//reservasController.guardar(nuevaReserva);
+		reservaController.registraReserva(nuevaReserva);
+
+		JOptionPane.showMessageDialog(null,"Registro Guardado con éxito " + nuevaReserva.getId());
+
+		RegistroHuesped huesped = new RegistroHuesped(nuevaReserva.getId());
+		huesped.setVisible(true);
+		dispose();
+	}
+	private void guardarReserva2() {
+		String fechaE = ((JTextField)txtFechaE.getDateEditor().getUiComponent()).getText();
+		String fechaS = ((JTextField)txtFechaS.getDateEditor().getUiComponent()).getText();
+		String formaP = (String) txtFormaPago.getSelectedItem();
+		Date fecha1= java.sql.Date.valueOf(fechaE);
+		Date fecha2= java.sql.Date.valueOf(fechaS);
+
+//		ReservaRepository reservaRepository;
+
+		DatosRegistroReserva datosRegistroReserva = new DatosRegistroReserva(fecha1, fecha2,Float.valueOf(txtValor.getText()),formaP);
+    //	reservasController.guardar(nuevaReserva);
+
+	//llamado al jpa - instanciar reservaController
+	//	ReservaController reservaController = new ReservaController();
 		reservaController.registraReserva(datosRegistroReserva);
 
 		JOptionPane.showMessageDialog(null,"Reserva Guardada con éxito " +datosRegistroReserva);

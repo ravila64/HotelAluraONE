@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import java.awt.Color;
 
+import com.alura.hotel.controller.HuespedController;
+import com.alura.hotel.controller.ReservaController;
 import com.toedter.calendar.JDateChooser;
 import jdbc.controller1.HuespedesController;
 import jdbc.controller1.ReservasController;
@@ -38,8 +40,10 @@ public class RegistroHuesped extends JFrame {
 	private JTextField txtNreserva;
 	private JDateChooser txtFechaN;
 	private JComboBox<Format> txtNacionalidad;
-	private HuespedesController huespedesController;
-	private ReservasController reservasController;
+	//private HuespedesController huespedesController;
+	private HuespedController huespedController;
+	//private ReservasController reservasController;
+	private ReservaController reservaController;
 	private JLabel labelExit;
 	private JLabel labelAtras;
 	int xMouse, yMouse;
@@ -67,8 +71,10 @@ public class RegistroHuesped extends JFrame {
 	 * Create the frame.
 	 */
 	public RegistroHuesped(Long idReserva) {
-		this.huespedesController = new HuespedesController();
-		this.reservasController = new ReservasController();
+		//this.huespedesController = new HuespedesController();
+		//this.reservasController = new ReservasController();
+		this.huespedController = new HuespedController();
+		this.reservaController = new ReservaController();
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistroHuesped.class.getResource("/imagenes/lOGO-50PX.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,8 +86,7 @@ public class RegistroHuesped extends JFrame {
 		setLocationRelativeTo(null);
 		setUndecorated(true);
 		contentPane.setLayout(null);
-		
-		
+
 		JPanel header = new JPanel();
 		header.setLayout(null);
 		header.setBackground(SystemColor.text);
@@ -119,8 +124,7 @@ public class RegistroHuesped extends JFrame {
 		labelAtras.setFont(new Font("Roboto", Font.PLAIN, 23));
 		labelAtras.setBounds(0, 0, 53, 36);
 		btnAtras.add(labelAtras);
-		
-		
+
 		txtNombre = new JTextField();
 		txtNombre.setFont(new Font("Roboto", Font.PLAIN, 16));
 		txtNombre.setBounds(560, 135, 285, 33);

@@ -1,8 +1,6 @@
 package com.alura.hotel.controller;
 
-import com.alura.hotel.huesped.DatosActualizarHuesped;
-import com.alura.hotel.huesped.DatosListadoHuesped;
-import com.alura.hotel.huesped.Huesped;
+import io.swagger.v3.oas.annotations.Operation;
 import com.alura.hotel.reserva.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -19,18 +17,22 @@ public class ReservaController {
     private ReservaRepository reservaRepository;
 
     @PostMapping
+    @Transactional
+    @Operation(summary = "Registra una nueva reserva en la base de datos")
     public void registraReserva(@RequestBody @Valid DatosRegistroReserva datosRegistroReserva){
         reservaRepository.save(new Reserva(datosRegistroReserva));
         System.out.println("El request llega correctamente RESERVAS");
         System.out.println(datosRegistroReserva);
     }
     @GetMapping
+    @Operation(summary = "Obtiene el listado de Reservas")
     public Page<DatosListadoReserva> listadoHuesped(@PageableDefault(size=2) Pageable paginacion ){
         return reservaRepository.findByActivoTrue(paginacion).map(DatosListadoReserva::new);
     }
 
     @PutMapping
     @Transactional
+    @Operation(summary = "Actualizar Reservas")
     public void actualizarReserva(@RequestBody @Valid DatosActualizarReserva datosActualizarReserva){
         Reserva reserva = reservaRepository.getReferenceById(datosActualizarReserva.id());
         reserva.actualizarDatos(datosActualizarReserva);
