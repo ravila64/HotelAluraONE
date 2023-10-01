@@ -18,8 +18,9 @@ public record DatosRegistroReserva(
         @DateTimeFormat(pattern = "dd/MM/yyyy")
         Date fechaS,
         @NotNull
-        String valor,
-        @Enumerated(EnumType.STRING)
-        FormaPago formaPago
+        Float valor,
+        //@Enumerated(EnumType.STRING)
+        @NotNull
+        String formaPago
 ) {
 }

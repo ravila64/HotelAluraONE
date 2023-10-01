@@ -25,7 +25,7 @@ public class ReservaDAO {
 
                 pstm.setDate(1, reserva.getfechaE());
                 pstm.setDate(2, reserva.getfechaS());
-                pstm.setString(3, reserva.getvalor());
+                pstm.setFloat(3, Float.valueOf(reserva.getvalor()));
                 pstm.setString(4, reserva.getformaPago());
 
                 pstm.executeUpdate();
@@ -85,12 +85,12 @@ public class ReservaDAO {
         }
     }
 
-    public void Actualizar(Date fechaE, Date fechaS, String valor, String formaPago, Integer id) {
+    public void Actualizar(Date fechaE, Date fechaS, Float valor, String formaPago, Integer id) {
         try (PreparedStatement stm = connection
                 .prepareStatement("UPDATE reservas SET fecha_entrada = ?, fecha_salida = ?, valor = ?, formaPago = ? WHERE id = ?")) {
             stm.setDate(1, fechaE);
             stm.setDate(2, fechaS);
-            stm.setString(3, valor);
+            stm.setString(3, String.valueOf(Float.valueOf(valor)));
             stm.setString(4, formaPago);
             stm.setInt(5, id);
             stm.execute();
@@ -102,7 +102,7 @@ public class ReservaDAO {
     private void transformarResultSetEnReserva(List<Reserva> reservas, PreparedStatement pstm) throws SQLException {
         try (ResultSet rst = pstm.getResultSet()) {
             while (rst.next()) {
-                Reserva produto = new Reserva(rst.getInt(1), rst.getDate(2), rst.getDate(3), rst.getString(4), rst.getString(5));
+                Reserva produto = new Reserva(rst.getInt(1), rst.getDate(2), rst.getDate(3), rst.getFloat(4), rst.getString(5));
 
                 reservas.add(produto);
             }

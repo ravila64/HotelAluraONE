@@ -99,7 +99,7 @@ public class MenuUsuario extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				ReservasView reservas = new ReservasView();
 				reservas.setVisible(true);
-				//dispose();
+				dispose();
 			}
 		});
 		btnRegistro.setBounds(0, 255, 257, 56);

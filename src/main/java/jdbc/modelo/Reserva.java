@@ -6,18 +6,18 @@ public class Reserva {
     private Integer id;
     private Date fechaE;
     private Date fechaS;
-    private String valor;
+    private Float valor;
     private String formaPago;
 
 
-    public Reserva(Date fechaE, Date fechaS, String valor, String formaPago) {
+    public Reserva(Date fechaE, Date fechaS, Float valor, String formaPago) {
         this.fechaE = fechaE;
         this.fechaS = fechaS;
         this.valor = valor;
         this.formaPago = formaPago;
     }
 
-    public Reserva(Integer id, Date fechaE, Date fechaS, String valor, String formaPago) {
+    public Reserva(Integer id, Date fechaE, Date fechaS, Float valor, String formaPago) {
         this.id = id;
         this.fechaE = fechaE;
         this.fechaS = fechaS;
@@ -41,7 +41,7 @@ public class Reserva {
         return fechaS;
     }
 
-    public String getvalor() {
+    public float getvalor() {
         return valor;
     }
 

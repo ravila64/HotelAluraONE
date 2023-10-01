@@ -69,8 +69,7 @@ public class RegistroHuesped extends JFrame {
 	public RegistroHuesped(int idReserva) {
 		this.huespedesController = new HuespedesController();
 		this.reservasController = new ReservasController();
-		
-		
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistroHuesped.class.getResource("/imagenes/lOGO-50PX.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 910, 634);
@@ -214,9 +213,7 @@ public class RegistroHuesped extends JFrame {
 		String id = String.valueOf(idReserva);
 		txtNreserva.setText(id);
 		contentPane.add(txtNreserva);
-		
-			
-		
+
 		JSeparator separator_1_2 = new JSeparator();
 		separator_1_2.setBounds(560, 170, 289, 2);
 		separator_1_2.setForeground(new Color(12, 138, 199));

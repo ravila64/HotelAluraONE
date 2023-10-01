@@ -116,7 +116,7 @@ public class Login extends JFrame {
 					 txtUsuario.setForeground(Color.black);
 			        }
 			        if (String.valueOf(txtContrasena.getPassword()).isEmpty()) {
-			        	txtContrasena.setText("********");
+			        	txtContrasena.setText("******");
 			        	txtContrasena.setForeground(Color.gray);
 			        }
 			}
@@ -146,7 +146,7 @@ public class Login extends JFrame {
 		
 		txtContrasena = new JPasswordField();
 		txtContrasena.setToolTipText("Ingrese contrasenha");
-		txtContrasena.setText("********");
+		txtContrasena.setText("");
 		txtContrasena.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {

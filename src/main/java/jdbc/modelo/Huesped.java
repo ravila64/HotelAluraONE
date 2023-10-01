@@ -2,93 +2,90 @@ package jdbc.modelo;
 import java.sql.Date;
 
 public class Huesped {
-    private Integer Id;
-    private String Nombre;
-    private String Apellido;
-    private Date FechaNacimiento;
-    private String Nacionalidad;
-    private String Telefono;
-    private Integer IdReserva;
+    private Integer id;
+    private String nombre;
+    private String apellido;
+    private Date fechaNacimiento;
+    private String nacionalidad;
+    private String telefono;
+    private Integer idReserva;
 
     public Huesped(String nombre, String apellido, Date fechaNacimiento, String nacionalidad, String telefono,
                    Integer idReserva) {
         super();
-        Nombre = nombre;
-        Apellido = apellido;
-        FechaNacimiento = fechaNacimiento;
-        Nacionalidad = nacionalidad;
-        Telefono = telefono;
-        IdReserva = idReserva;
+        nombre = nombre;
+        apellido = apellido;
+        fechaNacimiento = fechaNacimiento;
+        nacionalidad = nacionalidad;
+        telefono = telefono;
+        idReserva = idReserva;
     }
 
     public Huesped(Integer id, String nombre, String apellido, Date fechaNacimiento, String nacionalidad,
                    String telefono, Integer idReserva) {
         super();
-        Id = id;
-        Nombre = nombre;
-        Apellido = apellido;
-        FechaNacimiento = fechaNacimiento;
-        Nacionalidad = nacionalidad;
-        Telefono = telefono;
-        IdReserva = idReserva;
+        id = id;
+        nombre = nombre;
+        apellido = apellido;
+        fechaNacimiento = fechaNacimiento;
+        nacionalidad = nacionalidad;
+        telefono = telefono;
+        idReserva = idReserva;
     }
 
-
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
-
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.nombre = nombre;
     }
 
     public String getApellido() {
-        return Apellido;
+        return apellido;
     }
 
     public void setApellido(String apellido) {
-        Apellido = apellido;
-    }
-
-    public String getNacionalidad() {
-        return Nacionalidad;
-    }
-
-    public void setNacionalidad(String nacionalidad) {
-        Nacionalidad = nacionalidad;
+        this.apellido = apellido;
     }
 
     public Date getFechaNacimiento() {
-        return FechaNacimiento;
+        return fechaNacimiento;
     }
 
     public void setFechaNacimiento(Date fechaNacimiento) {
-        FechaNacimiento = fechaNacimiento;
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public void setNacionalidad(String nacionalidad) {
+        this.nacionalidad = nacionalidad;
     }
 
     public String getTelefono() {
-        return Telefono;
+        return telefono;
     }
 
     public void setTelefono(String telefono) {
-        Telefono = telefono;
+        this.telefono = telefono;
     }
 
     public Integer getIdReserva() {
-        return IdReserva;
+        return idReserva;
     }
 
     public void setIdReserva(Integer idReserva) {
-        IdReserva = idReserva;
+        this.idReserva = idReserva;
     }
-
 }

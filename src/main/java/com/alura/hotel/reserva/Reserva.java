@@ -20,7 +20,7 @@ public class Reserva {
     @GeneratedValue(strategy=GenerationType.IDENTITY )
     private Long id;
     private LocalDate fechaE=LocalDate.now();
-    private LocalDate fechaS=LocalDate.now();
+    private LocalDate fechaS=LocalDate.now().plusDays(5);
     private float valor;
     private String formaPago;
     private boolean activo;
