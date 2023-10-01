@@ -1,5 +1,5 @@
 create table reservas(
-    id int not null auto_increment,
+    id bigint not null auto_increment,
     fecha_e date not null,
     fecha_s date not null,
     valor float not null,
