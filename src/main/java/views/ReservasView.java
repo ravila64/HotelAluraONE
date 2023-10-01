@@ -314,10 +314,10 @@ public class ReservasView extends JFrame {
 		String formaP = (String) txtFormaPago.getSelectedItem();
 		Date fecha1= java.sql.Date.valueOf(fechaE);
 		Date fecha2= java.sql.Date.valueOf(fechaS);
-		DatosRegistroReserva datosRegistroReserva = new DatosRegistroReserva(fecha1, fecha2,Float.valueOf(txtValor.getText()),formaP));
+		DatosRegistroReserva datosRegistroReserva = new DatosRegistroReserva(fecha1, fecha2,Float.valueOf(txtValor.getText()),formaP);
 //		reservasController.guardar(nuevaReserva);
 
-		//llamado con jpa
+		//llamado al jpa
 		reservaController.registraReserva(datosRegistroReserva);
 
 		JOptionPane.showMessageDialog(null,"Reserva Guardada con éxito " +datosRegistroReserva);

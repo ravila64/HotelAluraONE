@@ -54,7 +54,7 @@ public class RegistroHuesped extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RegistroHuesped frame = new RegistroHuesped(0);
+					RegistroHuesped frame = new RegistroHuesped(0L);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -66,7 +66,7 @@ public class RegistroHuesped extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public RegistroHuesped(int idReserva) {
+	public RegistroHuesped(Long idReserva) {
 		this.huespedesController = new HuespedesController();
 		this.reservasController = new ReservasController();
 

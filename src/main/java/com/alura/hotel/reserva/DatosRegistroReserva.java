@@ -23,4 +23,7 @@ public record DatosRegistroReserva(
         @NotNull
         String formaPago
 ) {
+        public Long getId() {
+                return getId();
+        }
 }

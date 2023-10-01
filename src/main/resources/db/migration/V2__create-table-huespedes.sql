@@ -6,7 +6,5 @@ create table huespedes(
 	nacionalidad varchar(50) not null,
 	telefono varchar(30) not null,
 	id_reserva int not null,
-	primary key(id),
-	// revisar mañana 01/oct
-	constraint fk_huespedes_id_reserva foreign key(id_reserva) references reservas(id)
+	primary key(id)
 );
