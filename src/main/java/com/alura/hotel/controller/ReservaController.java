@@ -20,7 +20,7 @@ public class ReservaController {
     @Transactional
     @Operation(summary = "Registra una nueva reserva en la base de datos")
     public void registraReserva(@RequestBody @Valid DatosRegistroReserva datosRegistroReserva){
-        reservaRepository.save(new Reserva(datosRegistroReserva));
+        this.reservaRepository.save(new Reserva(datosRegistroReserva));
         System.out.println("El request llega correctamente RESERVAS");
         System.out.println(datosRegistroReserva);
     }

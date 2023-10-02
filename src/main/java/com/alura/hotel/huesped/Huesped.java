@@ -23,14 +23,14 @@ public class Huesped {
     @Enumerated(EnumType.STRING)
     private Nacionalidad nacionalidad;
     private String telefono;
-    private Integer idReserva;
+    private Long idReserva;
 
     public Huesped(DatosRegistroHuesped datosRegistroHuesped){
         this.activo=true;
         this.nombre = datosRegistroHuesped.nombre();
         this.apellido=datosRegistroHuesped.apellido();
         this.fechaNacimiento=datosRegistroHuesped.fechaNacimiento();
-        this.nacionalidad=datosRegistroHuesped.nacionalidad();
+        this.nacionalidad= Nacionalidad.valueOf(datosRegistroHuesped.nacionalidad());
         this.telefono= datosRegistroHuesped.telefono();
         this.idReserva = datosRegistroHuesped.idReserva();
     }

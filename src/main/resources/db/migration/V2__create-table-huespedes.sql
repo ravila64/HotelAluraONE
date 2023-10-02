@@ -5,6 +5,6 @@ create table huespedes(
 	fecha_nacimiento date not null,
 	nacionalidad varchar(50) not null,
 	telefono varchar(30) not null,
-	id_reserva int not null,
+	id_reserva bigint not null,
 	primary key(id)
 );

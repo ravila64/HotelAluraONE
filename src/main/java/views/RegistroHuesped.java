@@ -11,10 +11,11 @@ import java.awt.Color;
 
 import com.alura.hotel.controller.HuespedController;
 import com.alura.hotel.controller.ReservaController;
+import com.alura.hotel.huesped.DatosRegistroHuesped;
+import com.alura.hotel.huesped.Huesped;
+import com.alura.hotel.huesped.Nacionalidad;
 import com.toedter.calendar.JDateChooser;
-import jdbc.controller1.HuespedesController;
-import jdbc.controller1.ReservasController;
-import jdbc.modelo.Huesped;
+//import jdbc.modelo.Huesped;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -27,6 +28,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.Format;
 import java.awt.Toolkit;
+import java.util.Date;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 
@@ -326,10 +328,20 @@ public class RegistroHuesped extends JFrame {
 	private void guardarHuesped() {
 		
 			if (txtFechaN.getDate() != null && !txtNombre.equals("") && !txtApellido.equals("") && !txtTelefono.equals("")) {		
-				String fechaN = ((JTextField)txtFechaN.getDateEditor().getUiComponent()).getText();	
-				int nreserva = Integer.parseInt(txtNreserva.getText());
-				Huesped huesped = new Huesped(txtNombre.getText(), txtApellido.getText(),  java.sql.Date.valueOf(fechaN), txtNacionalidad.getSelectedItem().toString(),txtTelefono.getText(), nreserva);
-				this.huespedesController.guardar(huesped);
+				String fechaN = ((JTextField)txtFechaN.getDateEditor().getUiComponent()).getText();
+				//int nreserva = Integer.parseInt(txtNreserva.getText());
+				Long nreserva = Long.parseLong(txtNreserva.getText());
+				String pais = (String) txtNacionalidad.getSelectedItem().toString();
+
+				//Huesped huesped = new Huesped(txtNombre.getText(), txtApellido.getText(),  java.sql.Date.valueOf(fechaN), txtNacionalidad.getSelectedItem().toString(),txtTelefono.getText(), nreserva);
+				DatosRegistroHuesped datosRegistroHuesped=new DatosRegistroHuesped(
+								txtNombre.getText(), txtApellido.getText(),
+								java.sql.Date.valueOf(fechaN), pais,txtTelefono.getText(),
+								nreserva);
+				//this.huespedesController.guardar(huesped);
+				//this.huespedController.guardar(huesped);
+				this.huespedController.registraHuesped(datosRegistroHuesped);
+
 				Exito exito = new Exito();
 				exito.setVisible(true);	
 				dispose();
@@ -337,6 +349,18 @@ public class RegistroHuesped extends JFrame {
 				JOptionPane.showMessageDialog(this, "Debes llenar todos los campos.");
 			}									
 	}
-	
+
+	private String buscar_nacionalidad(String texto_pais){
+		texto_pais=texto_pais.toUpperCase();
+		String texto_buscado="";
+		for (Nacionalidad pais : Nacionalidad.values()) {
+			// Convierte el valor del enum a mayúsculas y compáralo con la palabra buscada en mayúsculas
+			if (pais.name().equals(texto_pais)) {
+				//System.out.println("Palabra encontrada en el enum: " + color);
+				texto_buscado= pais.name(); // Termina la búsqueda si se encuentra una coincidencia
+			}
+		}
+		return texto_buscado;
+	}
 										
 	}

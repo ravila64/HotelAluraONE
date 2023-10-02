@@ -18,7 +18,7 @@ public class HuespedController {
     @PostMapping
     public void registraHuesped(@RequestBody @Valid DatosRegistroHuesped datosRegistroHuesped){
         huespedRepository.save(new Huesped(datosRegistroHuesped));
-        System.out.println("El request llega correctamente");
+        System.out.println("El request llega correctamente, grabacion Huesped");
         System.out.println(datosRegistroHuesped);
     }
 

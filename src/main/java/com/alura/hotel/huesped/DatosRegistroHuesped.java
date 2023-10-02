@@ -18,11 +18,12 @@ public record DatosRegistroHuesped(
         @Future
         @DateTimeFormat(pattern = "dd/MM/yyyy")
         Date fechaNacimiento,
-        @Enumerated(EnumType.STRING)
-        Nacionalidad nacionalidad,
+        //@Enumerated(EnumType.STRING)
+        @NotNull
+        String nacionalidad,
         @NotBlank
         String telefono,
         @NotNull
-        Integer idReserva
+        Long idReserva
 ) {
 }
