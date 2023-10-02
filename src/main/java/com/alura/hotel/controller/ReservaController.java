@@ -16,9 +16,9 @@ public class ReservaController {
     @Autowired
     private ReservaRepository reservaRepository;
 
-    public ReservaRepository getReservaRepository() {
-        return reservaRepository;
-    }
+//    public ReservaRepository getReservaRepository() {
+//        return reservaRepository;
+//    }
 
     @PostMapping
     @Transactional

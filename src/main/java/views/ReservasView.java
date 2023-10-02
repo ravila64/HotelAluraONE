@@ -13,7 +13,9 @@ import javax.swing.JTextField;
 
 import com.alura.hotel.controller.ReservaController;
 import com.alura.hotel.reserva.DatosRegistroReserva;
+import com.alura.hotel.reserva.ReservaRepository;
 import com.toedter.calendar.JDateChooser;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.awt.Font;
 import javax.swing.JComboBox;
@@ -45,8 +47,8 @@ public class ReservasView extends JFrame {
 
 	//private ReservasController reservasController;
 	private ReservaController reservaController;   // new para spring
-	//@Autowired
-	//public ReservaRepository reservaRepository;
+	@Autowired
+	private ReservaRepository reservaRepository;
 
 	/**
 	 * Launch the application.

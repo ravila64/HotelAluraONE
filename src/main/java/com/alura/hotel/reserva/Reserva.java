@@ -1,19 +1,11 @@
 package com.alura.hotel.reserva;
 
-import com.alura.hotel.huesped.DatosActualizarHuesped;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
-
-import java.sql.Date;
-import java.time.LocalDate;
-
-import static java.sql.Date.*;
+import java.util.Date;
 
 @Entity(name = "Reserva")
 @Table(name = "reservas")
