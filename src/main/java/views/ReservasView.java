@@ -13,7 +13,6 @@ import javax.swing.JTextField;
 
 import com.alura.hotel.controller.ReservaController;
 import com.alura.hotel.reserva.DatosRegistroReserva;
-import com.alura.hotel.reserva.ReservaRepository;
 import com.toedter.calendar.JDateChooser;
 
 import java.awt.Font;
@@ -47,7 +46,7 @@ public class ReservasView extends JFrame {
 	//private ReservasController reservasController;
 	private ReservaController reservaController;   // new para spring
 	//@Autowired
-	private ReservaRepository reservaRepository;
+	//public ReservaRepository reservaRepository;
 
 	/**
 	 * Launch the application.
@@ -328,30 +327,6 @@ public class ReservasView extends JFrame {
 		huesped.setVisible(true);
 		dispose();
 	}
-	private void guardarReserva2() {
-		String fechaE = ((JTextField)txtFechaE.getDateEditor().getUiComponent()).getText();
-		String fechaS = ((JTextField)txtFechaS.getDateEditor().getUiComponent()).getText();
-		String formaP = (String) txtFormaPago.getSelectedItem();
-		Date fecha1= java.sql.Date.valueOf(fechaE);
-		Date fecha2= java.sql.Date.valueOf(fechaS);
-
-//		ReservaRepository reservaRepository;
-
-		DatosRegistroReserva datosRegistroReserva = new DatosRegistroReserva(fecha1, fecha2,Float.valueOf(txtValor.getText()),formaP);
-    //	reservasController.guardar(nuevaReserva);
-
-	//llamado al jpa - instanciar reservaController
-	//	ReservaController reservaController = new ReservaController();
-		reservaController.registraReserva(datosRegistroReserva);
-
-		JOptionPane.showMessageDialog(null,"Reserva Guardada con éxito " +datosRegistroReserva);
-		// estaba 										nuevoRegistro
-		// revisar
-		RegistroHuesped huesped = new RegistroHuesped(datosRegistroReserva.getId());
-		huesped.setVisible(true);
-		dispose();
-	}
-
 
 	private void calcularValor(JDateChooser fechaE,JDateChooser fechaS) {
 		if(fechaE.getDate() != null && fechaS.getDate() !=null) {

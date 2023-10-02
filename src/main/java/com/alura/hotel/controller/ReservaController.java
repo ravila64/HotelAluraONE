@@ -16,11 +16,15 @@ public class ReservaController {
     @Autowired
     private ReservaRepository reservaRepository;
 
+    public ReservaRepository getReservaRepository() {
+        return reservaRepository;
+    }
+
     @PostMapping
     @Transactional
     @Operation(summary = "Registra una nueva reserva en la base de datos")
     public void registraReserva(@RequestBody @Valid DatosRegistroReserva datosRegistroReserva){
-        this.reservaRepository.save(new Reserva(datosRegistroReserva));
+        reservaRepository.save(new Reserva(datosRegistroReserva));
         System.out.println("El request llega correctamente RESERVAS");
         System.out.println(datosRegistroReserva);
     }
