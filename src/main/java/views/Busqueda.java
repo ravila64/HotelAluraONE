@@ -7,11 +7,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import javax.swing.table.DefaultTableModel;
-
-import jdbc.controller1.HuespedesController;
-import jdbc.controller1.ReservasController;
-import jdbc.modelo.Huesped;
-import jdbc.modelo.Reserva;
+import com.alura.hotel.controller.ReservaController;
+import com.alura.hotel.controller.HuespedController;
+import com.alura.hotel.reserva.Reserva;
+//import jdbc.controller1.HuespedesController;
+//import jdbc.controller1.ReservasController;
+//import jdbc.modelo.Huesped;
+//import jdbc.modelo.Reserva;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
@@ -42,8 +44,10 @@ public class Busqueda extends JFrame {
 	private JTable tbReservas;
 	private DefaultTableModel modelo;
 	private DefaultTableModel modeloHuesped;
-	private ReservasController reservaController;
-	private HuespedesController huespedesController;
+	//private ReservasController reservaController;
+	private ReservaController reservaController;
+	//private HuespedesController huespedesController;
+	private HuespedController huespedController;
 	private JLabel labelAtras;
 	private JLabel labelExit;
 	int xMouse, yMouse;
@@ -70,8 +74,8 @@ public class Busqueda extends JFrame {
 	 * Create the frame.
 	 */
 	public Busqueda() {
-		this.reservaController = new ReservasController();
-		this.huespedesController = new HuespedesController();
+		this.reservaController = new ReservaController();
+		this.huespedController = new HuespedController();
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Busqueda.class.getResource("/imagenes/lupa2.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 910, 571);
@@ -83,16 +87,13 @@ public class Busqueda extends JFrame {
 		setUndecorated(true);
 		contentPane.setLayout(null);
 		JScrollPane scrollPane = new JScrollPane(tbReservas);
-		
-		
-		
+
 		txtBuscar = new JTextField();
 		txtBuscar.setBounds(536, 127, 193, 31);
 		txtBuscar.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		contentPane.add(txtBuscar);
 		txtBuscar.setColumns(10);
-		
-		
+
 		JLabel lblTitulo = new JLabel("SISTEMA DE BÚSQUEDA");
 		lblTitulo.setBounds(331, 62, 280, 42);
 		lblTitulo.setForeground(new Color(12, 138, 199));
@@ -104,30 +105,25 @@ public class Busqueda extends JFrame {
 		panel.setBackground(new Color(12, 138, 199));
 		panel.setFont(new Font("Roboto", Font.PLAIN, 16));
 		contentPane.add(panel);
-		
-		
 
 		tbHuespedes = new JTable();
 		tbHuespedes.setFont(new Font("Roboto", Font.PLAIN, 16));
 		panel.addTab("Huéspedes", new ImageIcon(Busqueda.class.getResource("/imagenes/pessoas.png")), tbHuespedes, null);
 		modeloHuesped = (DefaultTableModel) tbHuespedes.getModel();
-		modeloHuesped.addColumn("Numero de Huesped");
+		modeloHuesped.addColumn("Numero Huesped");
 		modeloHuesped.addColumn("Nombre");
 		modeloHuesped.addColumn("Apellido");
-		modeloHuesped.addColumn("Fecha de Nacimiento");
+		modeloHuesped.addColumn("Fecha Nacimiento");
 		modeloHuesped.addColumn("Nacionalidad");
 		modeloHuesped.addColumn("Telefono");
-		modeloHuesped.addColumn("Numero de Reserva");
+		modeloHuesped.addColumn("Num Reserva");
 		LlenarTablaHuespedes();
 
-		
-		
-		
 		tbReservas = new JTable();
 		tbReservas.setFont(new Font("Roboto", Font.PLAIN, 16));
 		panel.addTab("Reservas", new ImageIcon(Busqueda.class.getResource("/imagenes/reservado.png")), tbReservas, null);
 		modelo = (DefaultTableModel) tbReservas.getModel();
-		modelo.addColumn("Numero de Reserva");
+		modelo.addColumn("Numero Reserva");
 		modelo.addColumn("Fecha Check In");
 		modelo.addColumn("Fecha Check Out");
 		modelo.addColumn("Valor");
@@ -147,7 +143,6 @@ public class Busqueda extends JFrame {
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				headerMouseDragged(e);
-			     
 			}
 		});
 		header.addMouseListener(new MouseAdapter() {
@@ -304,8 +299,12 @@ public class Busqueda extends JFrame {
 					if(confirmar == JOptionPane.YES_OPTION){
 
 						String valor = tbReservas.getValueAt(filaReservas, 0).toString();			
-						reservaController.eliminar(Integer.valueOf(valor));
-						JOptionPane.showMessageDialog(contentPane, "Registro Eliminado");
+						//reservaController.eliminar(Integer.valueOf(valor));
+						// se necesita el ID del record a eliminar, eliminacion logica, activo=false
+
+						reservaController.eliminarReserva(Long.valueOf(valor));  // estaba INteger
+
+						JOptionPane.showMessageDialog(contentPane, "Registro Eliminado, Reservas");
 						limpiarTabla();
 						LlenarTablaReservas();
 						LlenarTablaHuespedes();
@@ -320,8 +319,10 @@ public class Busqueda extends JFrame {
 					if(confirmarh == JOptionPane.YES_OPTION){
 
 						String valor = tbHuespedes.getValueAt(filaHuespedes, 0).toString();			
-						huespedesController.eliminar(Integer.valueOf(valor));
-						JOptionPane.showMessageDialog(contentPane, "Registro Eliminado");
+						//huespedController.eliminar(Integer.valueOf(valor));
+						huespedController.eliminarHuesped(Long.valueOf(valor));
+
+						JOptionPane.showMessageDialog(contentPane, "Registro Eliminado, Huespedes");
 						limpiarTabla();
 						LlenarTablaHuespedes();
 						LlenarTablaReservas();
@@ -352,11 +353,11 @@ public class Busqueda extends JFrame {
 		return this.reservaController.buscarId(txtBuscar.getText());
 	} 
 	private List<Huesped> BuscarHuespedes() {
-		return this.huespedesController.listarHuespedes();
+		return this.huespedController.listarHuespedes();
 	}
 	
 	private List<Huesped> BuscarHuespedesId() {
-		return this.huespedesController.listarHuespedesId(txtBuscar.getText());
+		return this.huespedController.listarHuespedesId(txtBuscar.getText());
 	}
 	
 	private void limpiarTabla() {
@@ -416,8 +417,7 @@ public class Busqueda extends JFrame {
 	private void ActualizarReservas() {		
 		Optional.ofNullable(modelo.getValueAt(tbReservas.getSelectedRow(), tbReservas.getSelectedColumn()))
         .ifPresentOrElse(fila -> {
-        	
-        	Date fechaE = Date.valueOf(modelo.getValueAt(tbReservas.getSelectedRow(), 1).toString());		
+        	Date fechaE = Date.valueOf(modelo.getValueAt(tbReservas.getSelectedRow(), 1).toString());
         	Date fechaS = Date.valueOf(modelo.getValueAt(tbReservas.getSelectedRow(), 2).toString());
 			String valor = (String) modelo.getValueAt(tbReservas.getSelectedRow(), 3);
 			String formaPago = (String) modelo.getValueAt(tbReservas.getSelectedRow(), 4);
@@ -425,13 +425,11 @@ public class Busqueda extends JFrame {
 			this.reservaController.actualizar(fechaE,fechaS, valor, formaPago, id);
 			JOptionPane.showMessageDialog(this, String.format("Registro modificado con éxito"));
 		}, () -> JOptionPane.showMessageDialog(this, "Por favor, elije un registro"));
-		
 	}
 	
 	private void ActualizarHuesped() {		
 		Optional.ofNullable(modeloHuesped.getValueAt(tbHuespedes.getSelectedRow(), tbHuespedes.getSelectedColumn()))
         .ifPresentOrElse(filaHuesped -> {
-        	
         	String nombre = (String) modeloHuesped.getValueAt(tbHuespedes.getSelectedRow(), 1);
         	String apellido = (String) modeloHuesped.getValueAt(tbHuespedes.getSelectedRow(), 2);
         	Date fechaN = Date.valueOf(modeloHuesped.getValueAt(tbHuespedes.getSelectedRow(), 3).toString());
@@ -439,10 +437,9 @@ public class Busqueda extends JFrame {
 			String telefono = (String) modeloHuesped.getValueAt(tbHuespedes.getSelectedRow(), 5);
 			Integer idReserva = Integer.valueOf(modeloHuesped.getValueAt(tbHuespedes.getSelectedRow(), 6).toString());
 			Integer id = Integer.valueOf(modeloHuesped.getValueAt(tbHuespedes.getSelectedRow(), 0).toString());
-			this.huespedesController.actualizar(nombre,apellido,fechaN, nacionalidad, telefono, idReserva, id);
+			this.huespedController.actualizar(nombre,apellido,fechaN, nacionalidad, telefono, idReserva, id);
 			JOptionPane.showMessageDialog(this, String.format("Registro modificado con éxito"));
 		}, () -> JOptionPane.showMessageDialog(this, "Por favor, elije un registro"));
-		
 	}
 	
 	

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,10 +16,6 @@ import org.springframework.web.bind.annotation.*;
 public class ReservaController {
     @Autowired
     private ReservaRepository reservaRepository;
-
-//    public ReservaRepository getReservaRepository() {
-//        return reservaRepository;
-//    }
 
     @PostMapping
     @Transactional
@@ -30,7 +27,7 @@ public class ReservaController {
     }
     @GetMapping
     @Operation(summary = "Obtiene el listado de Reservas")
-    public Page<DatosListadoReserva> listadoHuesped(@PageableDefault(size=2) Pageable paginacion ){
+    public Page<DatosListadoReserva> listadoReserva(@PageableDefault(size=2) Pageable paginacion ){
         return reservaRepository.findByActivoTrue(paginacion).map(DatosListadoReserva::new);
     }
 
@@ -41,5 +38,16 @@ public class ReservaController {
         Reserva reserva = reservaRepository.getReferenceById(datosActualizarReserva.id());
         reserva.actualizarDatos(datosActualizarReserva);
     }
+
+    // DELETE LOGICO
+    @DeleteMapping("/{id}")
+    @Transactional
+    @Operation(summary = "Elimina una reserva - inactivo")
+    public ResponseEntity eliminarReserva(@PathVariable Long id) {
+        Reserva reserva = reservaRepository.getReferenceById(id);
+        reserva.desactivarReserva();
+        return ResponseEntity.noContent().build();
+    }
+
 
 }

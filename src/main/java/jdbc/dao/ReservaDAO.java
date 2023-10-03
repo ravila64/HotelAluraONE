@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import jdbc.modelo.Reserva;
@@ -17,8 +16,8 @@ public class ReservaDAO {
         this.connection = connection;
     }
 
-    public void guardar(Reserva reserva) {
-
+//    public void guardar(Reserva reserva) {
+//
 //        try {
 //            String sql = "INSERT INTO reservas (fecha_entrada, fecha_salida, valor, formaPago) VALUES (?, ?, ?, ?)";
 //
@@ -40,8 +39,8 @@ public class ReservaDAO {
 //        } catch (SQLException e) {
 //            throw new RuntimeException(e);
 //        }
-
-    }
+//
+//    }
 
     public List<Reserva> buscar() {
         List<Reserva> reservas = new ArrayList<Reserva>();
