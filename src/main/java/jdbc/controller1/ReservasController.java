@@ -10,16 +10,27 @@ import jdbc.modelo.Reserva;
 public class ReservasController {
     private ReservaDAO reservaDAO;
 
+<<<<<<< HEAD
 //    public ReservasController() {
 //        Connection connection = new ConnectionFactory().recuperarConexion();
 //        this.reservaDAO = new ReservaDAO(connection);
 //    }
+=======
+    public ReservasController() {
+        Connection connection = new ConnectionFactory().recuperarConexion();
+        this.reservaDAO = new ReservaDAO(connection);
+    }
+>>>>>>> 7efccb7fa0801c53901bae83a2b4310fe44950ae
 
     public void guardar(Reserva reserva) {
         this.reservaDAO.guardar(reserva);
     }
 
+<<<<<<< HEAD
   public List<Reserva> buscar() {
+=======
+ public List<Reserva> buscar() {
+>>>>>>> 7efccb7fa0801c53901bae83a2b4310fe44950ae
         return this.reservaDAO.buscar();
     }
 
