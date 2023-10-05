@@ -6,10 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+//import java.sql.PreparedStatement;
+//import java.sql.SQLException;
+//import java.util.ArrayList;
+//import java.util.List;
 
 @Repository
 public interface ReservaRepository extends JpaRepository<Reserva, Long> {
@@ -21,6 +24,17 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
             where r.id=:idReserva
             """)
     Boolean findActivoById(Long idReserva);
+
+    @Query("""
+            select r.activo from Reserva r where r.activo=1
+            """)
+    List<Reserva> getAll();
+
+ /*   public List<Reserva> listar() {
+        List<Reserva> reservas = new ArrayList<Reserva>();
+        reservas = this.findAll();
+        return reservas;
+    }*/
 
 //    public List<jdbc.modelo.Reserva> buscar() {
 //        List<jdbc.modelo.Reserva> reservas = new ArrayList<jdbc.modelo.Reserva>();

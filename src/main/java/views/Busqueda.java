@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import com.alura.hotel.controller.ReservaController;
 import com.alura.hotel.controller.HuespedController;
+import com.alura.hotel.huesped.Huesped;
+import com.alura.hotel.reserva.DatosListadoReserva;
 import com.alura.hotel.reserva.Reserva;
 //import jdbc.controller1.HuespedesController;
 //import jdbc.controller1.ReservasController;
@@ -346,7 +348,8 @@ public class Busqueda extends JFrame {
 		setResizable(false);
 	}
 	private List<Reserva> BuscarReservas() {
-		return this.reservaController.buscar();
+		//return this.reservaController.buscar();
+		return this.reservaController.listadoReserva(DatosListadoReserva);
 	}
 	
 	private List<Reserva> BuscarReservasId() {

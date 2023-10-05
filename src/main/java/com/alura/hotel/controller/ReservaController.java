@@ -11,6 +11,9 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/reservas")
 public class ReservaController {
@@ -20,7 +23,8 @@ public class ReservaController {
     @PostMapping
     @Transactional
     @Operation(summary = "Registra una nueva reserva en la base de datos")
-    public void registraReserva(@RequestBody @Valid DatosRegistroReserva datosRegistroReserva){
+    // registraReserva=GUARDAR()
+    public void guardar(@RequestBody @Valid DatosRegistroReserva datosRegistroReserva){
         reservaRepository.save(new Reserva(datosRegistroReserva));
         System.out.println("El request llega correctamente RESERVAS");
         System.out.println(datosRegistroReserva);
@@ -29,6 +33,12 @@ public class ReservaController {
     @Operation(summary = "Obtiene el listado de Reservas")
     public Page<DatosListadoReserva> listadoReserva(@PageableDefault(size=2) Pageable paginacion ){
         return reservaRepository.findByActivoTrue(paginacion).map(DatosListadoReserva::new);
+    }
+
+    @GetMapping
+    @Operation(summary = "Obtiene el listado de Reservas en una lista")
+    public List<Reserva> getAll(){
+        return reservaRepository.findAll();
     }
 
     @PutMapping
